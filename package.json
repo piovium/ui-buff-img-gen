@@ -1,0 +1,34 @@
+{
+  "name": "ui-buff-img-gen",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "solid-js": "^1.9.9",
+    "@tanstack/solid-form": "^1.23.5",
+    "@solid-primitives/storage": "^4.3.3",
+    "remeda": "^2.32.0",
+    "semver": "^7.7.3",
+    "modern-screenshot": "^4.6.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "daisyui": "^5.1.24",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^22.10.5",
+    "@types/semver": "^7.5.8",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-solid": "^0.13.1",
+    "typescript": "^5.8.3",
+    "vite": "^7.1.6",
+    "vite-plugin-solid": "^2.10.1"
+  }
+}
+
