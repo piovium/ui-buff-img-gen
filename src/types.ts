@@ -23,6 +23,8 @@ export interface ColorParams {
   fg_s_bottomleft: number;
   /** 前景B通道因子 */
   fg_b_factor: number;
+  /** 前景H通道偏移量（-127~127） */
+  fg_h_offset: number;
   /** 圆环亮度值（0-255） */
   ring_b_value: number;
 }
@@ -50,6 +52,8 @@ export interface InputParams {
   fg_invert_alpha: boolean;
   /** 是否对 alpha 通道应用羽化（高斯模糊） */
   fg_feather: boolean;
+  /** Alpha通道缩放指数（0~3） */
+  a_factor: number;
 }
 
 /**
@@ -57,4 +61,3 @@ export interface InputParams {
  * 等同于 ColorParams
  */
 export type ColorPreset = ColorParams;
-

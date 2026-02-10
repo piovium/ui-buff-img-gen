@@ -13,6 +13,7 @@ const [inputParams, setInputParams] = createSignal<InputParams>({
   fg_h: 100,
   fg_invert_alpha: false,
   fg_feather: false,
+  a_factor: 0.5,
 });
 
 const [colorParams, setColorParams] = createSignal<ColorParams>(
@@ -80,4 +81,3 @@ export function toggleRing() {
 
 // 导出状态和函数
 export { inputParams, colorParams, setInputParams, setColorParams };
-

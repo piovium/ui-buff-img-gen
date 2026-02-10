@@ -34,13 +34,13 @@ export function generateRingMask(width: number, height: number): Uint8Array {
   // 绘制 8 边形
   // 按顺时针顺序排列所有 8 个点
   const octagonPoints = [
-    [0.18, 0.18], // 顶部（通过点4对称得到）
+    [0.17, 0.17], // 顶部（通过点4对称得到）
     [0.50, 0.12], // 右上（点4的对称）
-    [0.82, 0.18], // 右（点3）
+    [0.83, 0.17], // 右（点3）
     [0.88, 0.50], // 右下（点2）
-    [0.82, 0.82], // 底部（点2的对称）
+    [0.83, 0.83], // 底部（点2的对称）
     [0.50, 0.88], // 左下（点2的对称）
-    [0.18, 0.82], // 左（点1）
+    [0.17, 0.83], // 左（点1）
     [0.12, 0.50], // 左上（点4）
   ];
   
@@ -58,10 +58,10 @@ export function generateRingMask(width: number, height: number): Uint8Array {
   tempCtx.closePath();
   tempCtx.fill();
   
-  // 绘制半径为 71% 的圆（填充 0，挖空中心）
+  // 绘制半径为 72% 的圆（填充 0，挖空中心）
   tempCtx.globalCompositeOperation = 'destination-out';
   tempCtx.beginPath();
-  tempCtx.arc(centerX, centerY, radius * 0.71, 0, Math.PI * 2);
+  tempCtx.arc(centerX, centerY, radius * 0.72, 0, Math.PI * 2);
   tempCtx.fill();
   tempCtx.globalCompositeOperation = 'source-over';
   
@@ -144,4 +144,3 @@ function createCanvasFromImageData(imageData: ImageData): HTMLCanvasElement {
   ctx.putImageData(imageData, 0, 0);
   return canvas;
 }
-

@@ -35,7 +35,7 @@ function applyRingMask(
     
     // 对 bg_a: 创建值为 175 的 overlay，以 mask 为 alpha 叠加
     // overlay = 175 * mask_alpha + bg_a * (1 - mask_alpha)
-    bgA[i] = Math.round(175 * maskAlpha + bgA[i] * (1 - maskAlpha));
+    bgA[i] = Math.round(200 * maskAlpha + bgA[i] * (1 - maskAlpha));
     
     // 对 bg_b: 使用 ring_b_value 的 overlay，以 mask 为 alpha 叠加
     // overlay = ring_b_value * mask_alpha + bg_b * (1 - mask_alpha)

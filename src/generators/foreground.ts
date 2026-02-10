@@ -104,7 +104,8 @@ export function generateForegroundChannels(
     }
     
     // 从缩放后的图像中提取 alpha 通道（在填充边缘之前）
-    let sourceAlphaChannel = extractAlphaChannelAdvanced(processedImageData);
+    const aFactor = inputParams?.a_factor ?? 0.5;
+    let sourceAlphaChannel = extractAlphaChannelAdvanced(processedImageData, aFactor);
     
     // 应用反色（如果需要，在填充边缘之前）
     if (inputParams?.fg_invert_alpha) {
@@ -165,18 +166,6 @@ export function generateForegroundChannels(
       const dyr = y - centerY;
       const distance = Math.sqrt(dxr * dxr + dyr * dyr);
       const radialPercent = distance / maxDiagonal;
-      
-      // 生成 H S 通道
-      fg_h[index] = fg_h_channel_function(
-        yPercent,
-        colorParams.fg_h_top,
-        colorParams.fg_h_bottom,
-      );
-      fg_s[index] = fg_s_channel_function(
-        diagonalPercent,
-        colorParams.fg_s_topright,
-        colorParams.fg_s_bottomleft,
-      );
 
       // Alpha 通道：从图像提取，如果没有图像则全 0
       if (alphaChannel) {
@@ -184,13 +173,30 @@ export function generateForegroundChannels(
       } else {
         fg_a[index] = 0;
       }
+      
+      // 生成 H S 通道
+      let fg_h_value = fg_h_channel_function(
+        yPercent,
+        colorParams.fg_h_top,
+        colorParams.fg_h_bottom,
+      );
+
+      fg_h_value = fg_h_value + (1 - fg_a[index] / 255) * colorParams.fg_h_offset;
+      fg_h[index] = Math.round(clamp(fg_h_value < 0 ? 255 + fg_h_value : fg_h_value, 0, 254));
+
+      const fg_s_value = fg_s_channel_function(
+        diagonalPercent,
+        colorParams.fg_s_topright,
+        colorParams.fg_s_bottomleft,
+      );
+      fg_s[index] = Math.round(clamp(fg_s_value * (2 - fg_a[index] / 255), 0, 255));
 
       // 生成 B 通道
       const fg_b_value = fg_b_channel_function(
         radialPercent,
         colorParams.fg_b_factor,
       );
-      fg_b[index] = Math.round(fg_b_value * (0.4 + fg_a[index] / 425)); // 根据 alpha 调整亮度
+      fg_b[index] = Math.round(fg_b_value); // 根据 alpha 调整亮度
 
     }
   }
@@ -249,5 +255,3 @@ function resizeImageData(
   // 返回缩放后的 ImageData
   return targetCtx.getImageData(0, 0, targetWidth, targetHeight);
 }
-
-

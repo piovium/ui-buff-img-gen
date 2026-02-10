@@ -201,6 +201,7 @@ body {
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   min-width: 120px;
+  border: solid 1px var(--color-border);
 }
 
 .export-btn:disabled {

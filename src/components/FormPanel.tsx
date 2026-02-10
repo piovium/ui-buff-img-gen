@@ -240,13 +240,23 @@ const FormPanel: Component<FormPanelProps> = (props) => {
                 <span class="form-option-text">羽化</span>
               </label>
             </div>
+            <ParamSlider
+              label="Alpha 缩放指数"
+              value={inputParams().a_factor}
+              min={0}
+              max={3}
+              step={0.01}
+              onUpdate={(value) => {
+                updateInputParams({ a_factor: value });
+              }}
+            />
           </Show>
         </FormSection>
 
         {/* 背景参数区域 */}
         <FormSection title="背景参数">
           <ParamSlider
-            label="背景 H 值"
+            label="[背景] 色相"
             value={colorParams().bg_h_value}
             min={0}
             max={255}
@@ -254,7 +264,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('bg_h_value', value)}
           />
           <ParamSlider
-            label="背景 S 起始值"
+            label="[背景] 饱和度 inside"
             value={colorParams().bg_s_start}
             min={0}
             max={255}
@@ -262,7 +272,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('bg_s_start', value)}
           />
           <ParamSlider
-            label="背景 S 结束值"
+            label="[背景] 饱和度 outside"
             value={colorParams().bg_s_end}
             min={0}
             max={255}
@@ -270,7 +280,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('bg_s_end', value)}
           />
           <ParamSlider
-            label="背景 B 起始值"
+            label="[背景] 亮度 inside"
             value={colorParams().bg_b_start}
             min={0}
             max={255}
@@ -278,7 +288,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('bg_b_start', value)}
           />
           <ParamSlider
-            label="背景 B 结束值"
+            label="[背景] 亮度 outside"
             value={colorParams().bg_b_end}
             min={0}
             max={255}
@@ -286,7 +296,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('bg_b_end', value)}
           />
           <ParamSlider
-            label="圆环亮度值"
+            label="[圆环] 亮度"
             value={colorParams().ring_b_value}
             min={0}
             max={255}
@@ -298,7 +308,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
         {/* 前景参数区域 */}
         <FormSection title="前景参数">
           <ParamSlider
-            label="前景 H 顶部值"
+            label="[前景] 色相 top"
             value={colorParams().fg_h_top}
             min={0}
             max={255}
@@ -306,7 +316,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('fg_h_top', value)}
           />
           <ParamSlider
-            label="前景 H 底部值"
+            label="[前景] 色相 bottom"
             value={colorParams().fg_h_bottom}
             min={0}
             max={255}
@@ -314,7 +324,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('fg_h_bottom', value)}
           />
           <ParamSlider
-            label="前景 S 右上角值"
+            label="[前景] 饱和度 topright"
             value={colorParams().fg_s_topright}
             min={0}
             max={255}
@@ -322,7 +332,7 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('fg_s_topright', value)}
           />
           <ParamSlider
-            label="前景 S 左下角值"
+            label="[前景] 饱和度 bottomleft"
             value={colorParams().fg_s_bottomleft}
             min={0}
             max={255}
@@ -330,12 +340,20 @@ const FormPanel: Component<FormPanelProps> = (props) => {
             onUpdate={(value) => updateParam('fg_s_bottomleft', value)}
           />
           <ParamSlider
-            label="前景 B 因子"
+            label="[前景] 亮度"
             value={colorParams().fg_b_factor}
             min={0}
             max={255}
             step={1}
             onUpdate={(value) => updateParam('fg_b_factor', value)}
+          />
+          <ParamSlider
+            label="[非主体区域] 色相偏移"
+            value={colorParams().fg_h_offset}
+            min={-127}
+            max={127}
+            step={1}
+            onUpdate={(value) => updateParam('fg_h_offset', value)}
           />
         </FormSection>
       </div>

@@ -242,7 +242,7 @@ const Preview: Component<PreviewProps> = (props) => {
           </label>
         </div>
         <button
-          class="btn btn-primary export-btn"
+          class="export-btn"
           onClick={handleExport}
           disabled={!imageData() || isGenerating()}
         >
